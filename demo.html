@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine?</title>
+    <style>
+        body {
+            background-color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            color: black;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            position: absolute;
+        }
+        .yes {
+            background-color: #ff4081;
+            color: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .no {
+            background-color: #607d8b;
+            color: white;
+        }
+        .reaction-img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body onload="document.getElementById('music').play()">
+    <audio autoplay loop>
+        <source src="C:\Users\sahvi\Downloads\ad.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    
+    <img id="reactionImage" src="https://media.tenor.com/p_VEcmrBsLMAAAAj/manja.gif" alt="Reaction" class="reaction-img">
+    <h1 id="message">Do you love me ❤️</h1>
+    <div class="buttons">
+        <button class="yes" onclick="yesClicked()">Yes 💖</button>
+        <button class="no" onclick="noClicked()">No </button>
+    </div>
+    
+    <script>
+        let noClickCount = 0;
+        function yesClicked() {
+            document.body.innerHTML = '<h1>💖 Yay! ❤️ I Love You Too! 😍</h1>';
+        }
+        
+        function noClicked() {
+            noClickCount++;
+            let message = document.getElementById("message");
+            let reactionImage = document.getElementById("reactionImage");
+            let noButton = document.querySelector(".no");
+            
+            if (noClickCount == 1) {
+                message.innerText = "Please think again? ❤️";
+                reactionImage.src = "https://media.tenor.com/_usaQU2Cu6QAAAAi/tkthao219-bubududu.gif";
+            } else if (noClickCount == 2) {
+                message.innerText = "Ek bar fir se soch lo 😘";
+                reactionImage.src = "https://media.tenor.com/xBF0HstBso8AAAAj/peachandgoma.gif";
+            } else if (noClickCount >= 3) {
+                message.innerText = "Please baby, please maan bhi jao yrr! 😘";
+                reactionImage.src = "https://media.tenor.com/UD3gBoJgqEgAAAAi/snuggles-caring.gif";
+                moveButtonRandomly(noButton);
+            }
+        }
+        
+        function moveButtonRandomly(button) {
+            let randomX = Math.random() * 80;
+            let randomY = Math.random() * 80;
+            button.style.left = `${randomX}vw`;
+            button.style.top = `${randomY}vh`;
+        }
+    </script>
+</body>
+</html>
