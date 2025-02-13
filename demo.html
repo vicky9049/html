@@ -23,22 +23,19 @@
         }
         .buttons {
             margin-top: 20px;
-            position: relative;
+            display: flex;
+            gap: 20px;
         }
         button {
             font-size: 1.5em;
             padding: 10px 20px;
-            margin: 10px;
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            position: absolute;
         }
         .yes {
             background-color: #ff4081;
             color: white;
-            left: 50%;
-            transform: translateX(-50%);
         }
         .no {
             background-color: #607d8b;
@@ -50,12 +47,10 @@
         }
     </style>
 </head>
-<body onload="document.getElementById('music').play()">
-    <audio autoplay loop>
-        <source src="C:\Users\sahvi\Downloads\ad.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
+<body>
+    <audio id="music" loop>
+        <source src="romantic-music.mp3" type="audio/mp3">
     </audio>
-    
     
     <img id="reactionImage" src="https://media.tenor.com/p_VEcmrBsLMAAAAj/manja.gif" alt="Reaction" class="reaction-img">
     <h1 id="message">Do you love me ❤️</h1>
@@ -66,8 +61,15 @@
     
     <script>
         let noClickCount = 0;
+        
         function yesClicked() {
-            document.body.innerHTML = '<h1>💖 Yay! ❤️ I Love You Too! 😍</h1>';
+            
+            document.body.innerHTML = '<h1>💖   ❤️ I Love You Too! to bataao kab chalogi oyo 😍</h1>';
+            document.getElementById("music").play();
+            
+            // GIF image change when Yes button is clicked
+            let reactionImage = document.getElementById("reactionImage");
+            reactionImage.src = "https://media.tenor.com/fFpVFqD_4esAAAAi/peluk.gif";  // Updated link
         }
         
         function noClicked() {
@@ -83,7 +85,7 @@
                 message.innerText = "Ek bar fir se soch lo 😘";
                 reactionImage.src = "https://media.tenor.com/xBF0HstBso8AAAAj/peachandgoma.gif";
             } else if (noClickCount >= 3) {
-                message.innerText = "Please baby, please maan bhi jao yrr! 😘";
+                message.innerText = "Please yerr please maan bhi jao kitna bhao khaogi 😘";
                 reactionImage.src = "https://media.tenor.com/UD3gBoJgqEgAAAAi/snuggles-caring.gif";
                 moveButtonRandomly(noButton);
             }
@@ -92,6 +94,7 @@
         function moveButtonRandomly(button) {
             let randomX = Math.random() * 80;
             let randomY = Math.random() * 80;
+            button.style.position = "absolute";
             button.style.left = `${randomX}vw`;
             button.style.top = `${randomY}vh`;
         }
